@@ -1,4 +1,5 @@
 import 'package:checkout_payment/Core/utils/styles.dart';
+import 'package:checkout_payment/Features/checkout/presentation/views/widgets/my_cart_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,6 +18,7 @@ class MyCartView extends StatelessWidget {
         ),
         leading: Center(child: SvgPicture.asset("assets/images/arrow.svg")),
       ),
+      body: const MyCartViewBody(),
     );
   }
 }
