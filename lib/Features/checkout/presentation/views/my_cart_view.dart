@@ -1,5 +1,6 @@
 import 'package:checkout_payment/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MyCartView extends StatelessWidget {
   const MyCartView({super.key});
@@ -14,7 +15,7 @@ class MyCartView extends StatelessWidget {
           textAlign: TextAlign.center,
           style: Styles.style25
         ),
-        leading: const Icon(Icons.arrow_back),
+        leading: Center(child: SvgPicture.asset("assets/images/arrow.svg")),
       ),
     );
   }
