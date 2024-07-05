@@ -1,4 +1,5 @@
-import 'package:checkout_payment/Features/checkout/presentation/views/widgets/payment_method_item.dart';
+import 'package:checkout_payment/Features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PaymentDetailsViewBody extends StatelessWidget {
@@ -6,20 +7,16 @@ class PaymentDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+    return  Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Row(
-            children: [
-              PaymentMethodItem(isActive: true, image: 'assets/images/cart.svg',),
-              SizedBox(width: 15,),
-              PaymentMethodItem(isActive: false, image: 'assets/images/paypal.svg',),
-            ],
-          ),
+          PaymentMethodsListView(),
         ],
       ),
     );
   }
 }
+
+
 
