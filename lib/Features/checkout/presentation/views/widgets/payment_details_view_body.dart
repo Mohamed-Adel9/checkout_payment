@@ -1,6 +1,5 @@
 import 'package:checkout_payment/Features/checkout/presentation/views/widgets/payment_method_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentDetailsViewBody extends StatelessWidget {
   const PaymentDetailsViewBody({super.key});
