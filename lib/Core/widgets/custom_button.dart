@@ -5,9 +5,11 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.onPressed,
+    required this.title
   });
 
    final void Function()? onPressed;
+   final String title ;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,8 @@ class CustomButton extends StatelessWidget {
             )
         ),
         onPressed: onPressed,
-        child: const Text(
-          "Complete Payment",
+        child: Text(
+          title,
           style: Styles.style22
           ,
         ),
