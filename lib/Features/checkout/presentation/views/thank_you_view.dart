@@ -7,7 +7,8 @@ class ThankYouView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: ThankYouViewBody(),
+      backgroundColor: Colors.white,
+      body: SafeArea(child: ThankYouViewBody()),
     );
   }
 }
