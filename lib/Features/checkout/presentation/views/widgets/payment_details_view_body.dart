@@ -2,7 +2,6 @@ import 'package:checkout_payment/Core/widgets/custom_button.dart';
 import 'package:checkout_payment/Features/checkout/presentation/views/thank_you_view.dart';
 import 'package:checkout_payment/Features/checkout/presentation/views/widgets/costume_credit_card.dart';
 import 'package:checkout_payment/Features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PaymentDetailsViewBody extends StatefulWidget {
@@ -20,9 +19,9 @@ class _PaymentDetailsViewBodyState extends State<PaymentDetailsViewBody> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
+         const SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.only(top: 5.0),
+            padding: EdgeInsets.only(top: 5.0),
             child: PaymentMethodsListView(),
           ),
         ),
@@ -45,7 +44,6 @@ class _PaymentDetailsViewBodyState extends State<PaymentDetailsViewBody> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    print("done");
                   } else {
                     Navigator.of(context).push(
                       MaterialPageRoute(

@@ -2,7 +2,7 @@ import 'package:checkout_payment/Features/checkout/presentation/views/widgets/pa
 import 'package:flutter/material.dart';
 
 class PaymentMethodsListView extends StatefulWidget {
-  PaymentMethodsListView({super.key,});
+  const PaymentMethodsListView({super.key,});
 
   @override
   State<PaymentMethodsListView> createState() => _PaymentMethodsListViewState();
