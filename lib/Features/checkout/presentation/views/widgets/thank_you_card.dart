@@ -17,7 +17,7 @@ class ThankYouCard extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color.fromRGBO(217, 217, 217, 1),
+        color: const Color(0xffEDEDED),
       ),
       child: Column(
         children: [
