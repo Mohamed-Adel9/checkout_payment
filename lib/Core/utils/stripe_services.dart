@@ -6,14 +6,14 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripeServices {
   ApiServices apiServices = ApiServices();
-  String apiKey = 'https://api.stripe.com/v1/payment_intents';
+  String apiUrl = 'https://api.stripe.com/v1/payment_intents';
 
-//paymentIntentObject =create Payment Intent (Amount - Currency )
+//paymentIntentObject = create Payment Intent (Amount - Currency )
   Future<PaymentIntentModel> createPaymentIntent(
       PaymentIntentInputModel paymentIntentInputModel) async {
     var response = await apiServices.post(
       body: paymentIntentInputModel.toJson(),
-      url: apiKey,
+      url: apiUrl,
       token: ApiKeys().secretKey,
     );
 
