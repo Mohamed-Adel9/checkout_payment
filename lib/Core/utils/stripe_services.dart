@@ -14,7 +14,7 @@ class StripeServices {
     var response = await apiServices.post(
       body: paymentIntentInputModel.toJson(),
       url: apiKey,
-      token: ApiKeys.secretKey,
+      token: ApiKeys().secretKey,
     );
 
     PaymentIntentModel paymentIntentModel =
@@ -46,3 +46,4 @@ class StripeServices {
     await displayPaymentSheet();
   }
 }
+
