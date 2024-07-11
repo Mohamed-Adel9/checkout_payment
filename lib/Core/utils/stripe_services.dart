@@ -8,7 +8,6 @@ class StripeServices {
   ApiServices apiServices = ApiServices();
   String apiKey = 'https://api.stripe.com/v1/payment_intents';
 
-
 //paymentIntentObject =create Payment Intent (Amount - Currency )
   Future<PaymentIntentModel> createPaymentIntent(
       PaymentIntentInputModel paymentIntentInputModel) async {
@@ -24,7 +23,6 @@ class StripeServices {
     return paymentIntentModel;
   }
 
-
 // init payment sheet (paymentIntentClientSecrete)
   Future initPaymentSheet({required String paymentIntentClientSecret}) async {
     Stripe.instance.initPaymentSheet(
@@ -33,9 +31,18 @@ class StripeServices {
             merchantDisplayName: "mohamed Adel"));
   }
 
-
 //PresentPaymentSheet()
   Future displayPaymentSheet() async {
     Stripe.instance.presentPaymentSheet();
+  }
+
+
+  // one step to make all the steps 
+  Future makePayment(
+      {required PaymentIntentInputModel paymentIntentInputModel}) async {
+    var paymentIntentModel = await createPaymentIntent(paymentIntentInputModel);
+    await initPaymentSheet(
+        paymentIntentClientSecret: paymentIntentModel.clientSecret!);
+    await displayPaymentSheet();
   }
 }
