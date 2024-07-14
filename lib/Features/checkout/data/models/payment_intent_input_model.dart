@@ -10,7 +10,8 @@ class PaymentIntentInputModel {
     return {
       "amount": (int.parse(amount) * 100).toString(),
       "currency": currency,
-      "customer": customerId,
+      "customer": customerId,   // make it required only if your app didn't allow guest to buy only customers
+
     };
   }
 }
