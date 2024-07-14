@@ -9,7 +9,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripeServices {
   ApiServices apiServices = ApiServices();
-  String apiUrl = 'https://api.stripe.com/v1/payment_intents';
+  String baseUrl = 'https://api.stripe.com/v1';
 
 //paymentIntentObject = create Payment Intent (Amount - Currency )
   Future<PaymentIntentModel> createPaymentIntent(
@@ -17,7 +17,7 @@ class StripeServices {
     var response = await apiServices.post(
       body: paymentIntentInputModel.toJson(),
       contentType: Headers.formUrlEncodedContentType,
-      url: apiUrl,
+      url: "$baseUrl/payment_intents",
       token: ApiKeys().secretKey,
     );
 
@@ -66,7 +66,7 @@ class StripeServices {
     var response = await apiServices.post(
       body: {"customer": customerId},
       contentType: Headers.formUrlEncodedContentType,
-      url: apiUrl,
+      url: "$baseUrl/ephemeral_keys",
       headers: {
         "Authorization": "Bearer ${ApiKeys().secretKey}",
         "Stripe-Version": "2024-06-20"
