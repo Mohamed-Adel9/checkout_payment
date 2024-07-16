@@ -18,7 +18,7 @@ class StripeServices {
       body: paymentIntentInputModel.toJson(),
       contentType: Headers.formUrlEncodedContentType,
       url: "$baseUrl/payment_intents",
-      token: ApiKeys().secretKey,
+      token: ApiKeys.secretKey,
     );
 
     PaymentIntentModel paymentIntentModel =
@@ -68,10 +68,10 @@ class StripeServices {
       contentType: Headers.formUrlEncodedContentType,
       url: "$baseUrl/ephemeral_keys",
       headers: {
-        "Authorization": "Bearer ${ApiKeys().secretKey}",
+        "Authorization": "Bearer ${ApiKeys.secretKey}",
         "Stripe-Version": "2024-06-20"
       },
-      token: ApiKeys().secretKey,
+      token: ApiKeys.secretKey,
     );
 
     EphemeralKeyModel ephemeralKeyModel =
