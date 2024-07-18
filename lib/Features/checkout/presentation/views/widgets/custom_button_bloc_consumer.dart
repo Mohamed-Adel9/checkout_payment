@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'package:checkout_payment/Core/utils/api_keys.dart';
 import 'package:checkout_payment/Core/widgets/custom_button.dart';
-import 'package:checkout_payment/Features/checkout/data/models/paypal_models/AmountModel.dart';
-import 'package:checkout_payment/Features/checkout/data/models/paypal_models/ItemsListModel.dart';
 import 'package:checkout_payment/Features/checkout/presentation/manager/cubit/payment_cubit.dart';
 import 'package:checkout_payment/Features/checkout/presentation/views/thank_you_view.dart';
 import 'package:flutter/material.dart';
