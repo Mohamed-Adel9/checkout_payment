@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:checkout_payment/Core/utils/api_keys.dart';
 import 'package:checkout_payment/Core/widgets/custom_button.dart';
 import 'package:checkout_payment/Features/checkout/data/models/paypal_models/AmountModel.dart';
@@ -8,7 +7,7 @@ import 'package:checkout_payment/Features/checkout/presentation/manager/cubit/pa
 import 'package:checkout_payment/Features/checkout/presentation/views/thank_you_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:flutter_paypal/flutter_paypal.dart';
 
 class CustomButtonBlocConsumer extends StatelessWidget {
   const CustomButtonBlocConsumer({
@@ -39,9 +38,8 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           onPressed: () {
             // for paypal
 
-
-            var paypalDetails = getPaypalDetails();
-            excutePaypalMethod(context, paypalDetails);
+            // var paypalDetails = getPaypalDetails();
+            excutePaypalMethod(context);
 
 
             // for stripe
@@ -58,66 +56,73 @@ class CustomButtonBlocConsumer extends StatelessWidget {
     );
   }
 
-  void excutePaypalMethod(BuildContext context, ({Map<String, dynamic> amountJson, ItemsListModel itemList}) paypalDetails) {
-      Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => PaypalCheckoutView(
-        sandboxMode: true,
-        clientId: ApiKeys.paypalClientId,
-        secretKey:ApiKeys.paypalSecretKey,
-        transactions: [
-          {
-            "amount": paypalDetails.amountJson,
-            "description": "The payment transaction description.",
-            "item_list": paypalDetails.itemList,
-          }
-        ],
-        note: "Contact us for any questions on your order.",
-        onSuccess: (Map params) async {
-          log("onSuccess: $params");
-          Navigator.pop(context);
-        },
-        onError: (error) {
-          log("onError: $error");
-          Navigator.pop(context);
-        },
-        onCancel: () {
-          print('cancelled:');
-          Navigator.pop(context);
-        },
-      ),
-    ));
-  }
-  ({Map<String, dynamic> amountJson, ItemsListModel itemList}) getPaypalDetails (){
-    // amount instance
-    var amount = AmountModel(
-      currency: "USD",
-      total: "100",
-      details: Details(
-          shipping: "0",
-          shippingDiscount: 0,
-          subtotal: "100"
+  void excutePaypalMethod(BuildContext context,) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) =>
+            UsePaypal(
+                sandboxMode: true,
+                clientId: ApiKeys.paypalClientId,
+                secretKey: ApiKeys.paypalSecretKey,
+                returnURL: "https://www.facebook.com/",
+                cancelURL: "https://www.youtube.com/",
+                transactions: const [
+                  {
+                    "amount": {
+                      "total": '10.12',
+                      "currency": "USD",
+                      "details": {
+                        "subtotal": '10.12',
+                        "shipping": '0',
+                        "shipping_discount": 0
+                      }
+                    },
+                    "description": "The payment transaction description.",
+                    "item_list": {
+                      "items": [
+                        {
+                          "name": "A demo product",
+                          "quantity": 1,
+                          "price": '10.12',
+                          "currency": "USD"
+                        }
+                      ],
+                    }
+                  }
+                ],
+                note: "Contact us for any questions on your order.",
+                onSuccess: (Map params) async {
+                  log("onSuccess: $params");
+                  Navigator.of(context).pop();
+                },
+                onError: (error) {
+                  log("onError: $error");
+                },
+                onCancel: (params) {
+                  log('cancelled: $params');
+                }),
       ),
     );
-    Map<String, dynamic> amountJson = amount.toJson();
+  }
 
-    //itemsList instance
-    List<OrderItemsModel> orders = [
-      OrderItemsModel(
-          currency: "USD",
-          name: "apple",
-          price: "4",
-          quantity: 10
-      ),
-      OrderItemsModel(
-          currency: "USD",
-          name: "banana",
-          price: "5",
-          quantity: 12
-      ),
-    ];
-    var itemList = ItemsListModel(
-        items: orders
-    );
-    return (amountJson : amountJson , itemList:itemList);
-  }
+//   ({Map<String, dynamic> amountJson, ItemsListModel itemList})
+//       getPaypalDetails() {
+//     // amount instance
+//     var amount = AmountModel(
+//       currency: "USD",
+//       total: "100",
+//       details: Details(shipping: "0", shippingDiscount: 0, subtotal: "100"),
+//     );
+//     Map<String, dynamic> amountJson = amount.toJson();
+//
+//     //itemsList instance
+//     List<OrderItemsModel> orders = [
+//       OrderItemsModel(currency: "USD", name: "apple", price: "4", quantity: 10),
+//       OrderItemsModel(
+//           currency: "USD", name: "banana", price: "5", quantity: 12),
+//     ];
+//     var itemList = ItemsListModel(items: orders);
+//     return (amountJson: amountJson, itemList: itemList);
+//   }
+// }
 }
