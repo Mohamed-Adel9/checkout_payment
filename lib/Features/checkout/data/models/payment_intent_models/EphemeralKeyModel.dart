@@ -1,4 +1,3 @@
-
 import 'package:checkout_payment/Features/checkout/data/models/ephemeral_key_model/associated_objects.dart';
 
 class EphemeralKeyModel {
